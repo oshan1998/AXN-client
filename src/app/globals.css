@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  /* Workspace neutrals — warm paper-like scale */
+  --color-canvas: #f4f4f2;
+  --color-surface: #ffffff;
+  --color-surface-muted: #fafaf9;
+  --color-line: #e7e6e2;
+  --color-line-strong: #d3d2cc;
+
+  /* Ink */
+  --color-ink: #1c1c19;
+  --color-ink-muted: #6d6c65;
+  --color-ink-faint: #a09f97;
+
+  /* Rail (dark left navigation) */
+  --color-rail: #16171b;
+  --color-rail-raised: #232429;
+  --color-rail-line: #2e2f35;
+  --color-rail-ink: #e7e7ea;
+  --color-rail-ink-muted: #8a8b90;
+
+  /* Brand */
+  --color-accent: #2f6fed;
+  --color-accent-hover: #2258c9;
+  --color-accent-soft: #e9f0fe;
+  --color-accent-ink: #1d4fbf;
+
+  /* Status */
+  --color-success: #0b7059;
+  --color-success-soft: #e0f4ec;
+  --color-warning: #b45309;
+  --color-warning-soft: #fdf1e0;
+  --color-danger: #d1352c;
+  --color-danger-soft: #fdeae8;
+
+  /* Node type colors — consistent across canvas, trace, badges */
+  --color-node-agent: #2f6fed;
+  --color-node-agent-soft: #e9f0fe;
+  --color-node-router: #c47710;
+  --color-node-router-soft: #fdf1dd;
+  --color-node-rag: #0f8a72;
+  --color-node-rag-soft: #e0f4ee;
+  --color-node-classifier: #7a4fd1;
+  --color-node-classifier-soft: #f0eafc;
+
+  --shadow-card: 0 1px 2px rgb(28 28 25 / 0.04), 0 4px 12px rgb(28 28 25 / 0.05);
+  --shadow-panel: 0 2px 6px rgb(28 28 25 / 0.06), 0 16px 40px rgb(28 28 25 / 0.1);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* React Flow overrides to match the design language */
+.react-flow__attribution {
+  display: none;
+}
+
+.react-flow__edge-path {
+  stroke: var(--color-line-strong);
+  stroke-width: 1.5;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--color-accent);
+}
+
+.react-flow__handle {
+  width: 10px;
+  height: 10px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-line-strong);
+  transition: border-color 120ms ease;
+}
+
+.react-flow__handle:hover {
+  border-color: var(--color-accent);
+}
+
+.react-flow__edge-textbg {
+  fill: var(--color-canvas);
+}
+
+.react-flow__edge-text {
+  fill: var(--color-ink-muted);
+  font-size: 11px;
 }
